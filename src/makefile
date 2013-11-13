@@ -9,7 +9,7 @@ CXXFLAGS = -Wall -c $(SDL_INCLUDE)
 LDFLAGS = $(SDL_LIB)
 EXE = main
 
-OBJECTS = Block.o mSDL.o
+OBJECTS = Block.o Sprite.o mSDL.o 
 all: $(EXE)
 
 $(EXE): main.cpp $(OBJECTS)
@@ -17,6 +17,9 @@ $(EXE): main.cpp $(OBJECTS)
 	$(CXX) $<  $(OBJECTS) $(LDFLAGS) -o $@ 
 
 Block.o: Block.cpp Block.h
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $< -o $@
+
+Sprite.o: Sprite.cpp Sprite.h
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $< -o $@
 
 mSDL.o: mSDL.cpp mSDL.h

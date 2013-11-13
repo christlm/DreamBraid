@@ -69,19 +69,22 @@ int main( int argc, char* args[] )
                 {
                     case SDLK_UP:
                         //ImageOffsetY -= 10;
-                        sprite.move_up(+10);
+                        sprite.move_up(SP_MOVE_RATE);
                         break;
                     case SDLK_DOWN:
                         //ImageOffsetY += 10;
-                        sprite.move_up(-10);
+                        sprite.move_down(SP_MOVE_RATE);
                         break;
                     case SDLK_LEFT:
-                        ImageOffsetX += 10;
-                        sprite.move_left(-10);
+                        ImageOffsetX -= BG_MOVE_RATE;
+                        if (ImageOffsetX > BG_LENGTH) {
+                            ImageOffsetX = 0;
+                        }
+                        sprite.move_left(SP_MOVE_RATE);
                         break;
                     case SDLK_RIGHT:
-                        ImageOffsetX -= 10;
-                        sprite.move_right(10);
+                        ImageOffsetX -= BG_MOVE_RATE;
+                        sprite.move_right(SP_MOVE_RATE);
                         break;
                     default:
                         break;

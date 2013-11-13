@@ -17,4 +17,10 @@ const std::string RES_SPRITE_PATH = "../res/block.png";
 //精灵开始起点
 const int SPRITE_START_X = 0;
 const int SPRITE_START_Y = 400;
+
+//背景移动速度
+const int BG_MOVE_RATE = 10;
+const int BG_LENGTH = 3786;
+//精灵移动速度
+const int SP_MOVE_RATE = 6;
 #endif

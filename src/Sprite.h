@@ -8,8 +8,13 @@ class Sprite {
     public:
         Sprite(SDL_Surface * screen);
         ~Sprite();
+        
+        //获取精灵x轴坐标
         int get_x_position();
+        //获取精灵x轴坐标
         int get_y_position();
+        
+        //精灵移动
         void move_up(int delta);
         void move_down(int delta);
         void move_left(int delta);
@@ -18,8 +23,11 @@ class Sprite {
         
 
     private:
+        //精灵移动矩形
         SDL_Rect m_rcSprite;
+        //精灵画像
         SDL_Surface * m_sfSprite;
+        //屏幕
         SDL_Surface * m_screen;
 };
 

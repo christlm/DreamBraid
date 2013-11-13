@@ -12,7 +12,7 @@ Sprite::Sprite(SDL_Surface * screen) {
 }
 
 Sprite::~Sprite() {
-	SDL_FreeSurface(m_sfSprite);
+    SDL_FreeSurface(m_sfSprite);
 }
 
 int Sprite::get_x_position() {
@@ -53,8 +53,10 @@ void Sprite::move_left(int delta) {
 }
 
 void Sprite::move_right(int delta) {
-    //if (m_rcSprite.x + delta < SPRITE_START_X)
+    if (m_rcSprite.x + delta < BG_LENGTH)
         m_rcSprite.x += delta;
+    //else
+
     draw_sprite();
 }
 

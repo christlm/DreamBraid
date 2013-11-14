@@ -22,5 +22,5 @@ const int SPRITE_START_Y = 400;
 const int BG_MOVE_RATE = 10;
 const int BG_LENGTH = 3786;
 //精灵移动速度
-const int SP_MOVE_RATE = 6;
+const int SP_MOVE_RATE = 1;
 #endif

@@ -10,4 +10,6 @@ extern SDL_Surface *load_image(std::string filename);
 
 extern void apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination, int ImageOffsetX, int ImageOffsetY);
 
+extern void move_bg( int x, int y, SDL_Surface* source, SDL_Surface* destination);
+
 #endif

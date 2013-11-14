@@ -5,6 +5,10 @@
 int ImageOffsetX = 0;
 int ImageOffsetY = 0;
 
+int ScreenOffsetX = 0;
+int ScreenOffsetY = 0;
+int Screen_X_Left = 0;
+int Screen_X_Right = SCREEN_WIDTH;
 //The surfaces that will be used
 SDL_Surface *background = NULL;
 SDL_Surface *screen = NULL;
@@ -39,7 +43,7 @@ int main( int argc, char* args[] )
     }
 
     //Set the window caption
-    SDL_WM_SetCaption( "Hello World", NULL );
+    SDL_WM_SetCaption( "Braid's Road", NULL );
 
     //Load the images
     background = load_image(RES_BACKGROUND_PATH.c_str());
@@ -75,14 +79,13 @@ int main( int argc, char* args[] )
         keystate = SDL_GetKeyState(NULL);
 
         if (keystate[SDLK_LEFT] ) {
-            ImageOffsetX -= BG_MOVE_RATE;
-            if (ImageOffsetX > BG_LENGTH) {
-                ImageOffsetX = 0;
-            }
             sprite.move_left(SP_MOVE_RATE);
         }
         if (keystate[SDLK_RIGHT] ) {
-            ImageOffsetX -= BG_MOVE_RATE;
+            if (Screen_X_Right - sprite.get_x_position() < SCREEN_WIDTH / 5) {
+                ScreenOffsetX += SCREEN_WIDTH / 5 ;
+                cout << "here" << endl;
+            }
             sprite.move_right(SP_MOVE_RATE);
         }
         if (keystate[SDLK_UP] ) {
@@ -95,8 +98,9 @@ int main( int argc, char* args[] )
         //TODO: ugly code!
         //重绘背景和阶梯，向左移动时会有残影
         //Update the screen
-        apply_surface( 0, 0, background, screen,ImageOffsetX,ImageOffsetY);
-        gl_block.onDraw(ImageOffsetX,ImageOffsetY);
+        //apply_surface( 0, 0, background, screen,ImageOffsetX,ImageOffsetY);
+        move_bg(ScreenOffsetX, ScreenOffsetY, background, screen);
+        //gl_block.onDraw(ImageOffsetX,ImageOffsetY);
         sprite.draw_sprite();
         if( SDL_Flip( screen ) == -1 )
         {

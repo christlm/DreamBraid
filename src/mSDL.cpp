@@ -36,3 +36,14 @@ void apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination,
     //Blit the surface
     SDL_BlitSurface( source, NULL, destination, &offset );
 }
+
+void move_bg( int x, int y, SDL_Surface* source, SDL_Surface* destination)
+{
+    SDL_Rect offset;
+
+    offset.x = x;
+    offset.y = y;
+
+    //Blit the surface
+    SDL_BlitSurface( source, &offset, destination, NULL);
+}

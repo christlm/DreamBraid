@@ -24,6 +24,10 @@ int Sprite::get_y_position() {
     return m_rcSprite.y;
 }
 
+void Sprite::set_x_position(int offset) {
+    m_rcSprite.x += offset;
+}
+
 void Sprite::draw_sprite() {
     SDL_BlitSurface(m_sfSprite, NULL, m_screen, &m_rcSprite);
 }

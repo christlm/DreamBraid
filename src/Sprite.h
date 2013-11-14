@@ -14,6 +14,7 @@ class Sprite {
         //获取精灵x轴坐标
         int get_y_position();
         
+        void set_x_position(int offset);
         //精灵移动
         void move_up(int delta);
         void move_down(int delta);

@@ -82,8 +82,11 @@ int main( int argc, char* args[] )
             sprite.move_left(SP_MOVE_RATE);
         }
         if (keystate[SDLK_RIGHT] ) {
-            if (Screen_X_Right - sprite.get_x_position() < SCREEN_WIDTH / 5) {
-                ScreenOffsetX += SCREEN_WIDTH / 5 ;
+            if (Screen_X_Right - sprite.get_x_position() < SCREEN_WIDTH / 4) {
+                ScreenOffsetX += SCREEN_WIDTH / 4 ;
+                Screen_X_Right += ScreenOffsetX;
+                Screen_X_Left += ScreenOffsetX;
+                sprite.set_x_position(-ScreenOffsetX);
                 cout << "here" << endl;
             }
             sprite.move_right(SP_MOVE_RATE);

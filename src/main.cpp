@@ -7,8 +7,6 @@ int ImageOffsetY = 0;
 
 int ScreenOffsetX = 0;
 int ScreenOffsetY = 0;
-int Screen_X_Left = 0;
-int Screen_X_Right = SCREEN_WIDTH;
 //The surfaces that will be used
 SDL_Surface *background = NULL;
 SDL_Surface *screen = NULL;
@@ -82,12 +80,9 @@ int main( int argc, char* args[] )
             sprite.move_left(SP_MOVE_RATE);
         }
         if (keystate[SDLK_RIGHT] ) {
-            if (Screen_X_Right - sprite.get_x_position() < SCREEN_WIDTH / 4) {
+            if (SCREEN_WIDTH - sprite.get_x_position() < SCREEN_WIDTH / 4) {
                 ScreenOffsetX += SCREEN_WIDTH / 4 ;
-                Screen_X_Right += ScreenOffsetX;
-                Screen_X_Left += ScreenOffsetX;
-                sprite.set_x_position(-ScreenOffsetX);
-                cout << "here" << endl;
+                sprite.set_x_position(-SCREEN_WIDTH / 2);
             }
             sprite.move_right(SP_MOVE_RATE);
         }
@@ -101,7 +96,6 @@ int main( int argc, char* args[] )
         //TODO: ugly code!
         //重绘背景和阶梯，向左移动时会有残影
         //Update the screen
-        //apply_surface( 0, 0, background, screen,ImageOffsetX,ImageOffsetY);
         move_bg(ScreenOffsetX, ScreenOffsetY, background, screen);
         //gl_block.onDraw(ImageOffsetX,ImageOffsetY);
         sprite.draw_sprite();

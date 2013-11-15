@@ -45,6 +45,10 @@ int main( int argc, char* args[] )
 
     //Load the images
     background = load_image(RES_BACKGROUND_PATH.c_str());
+    if (!background)
+    {
+        cout << "load background image failed." << endl;
+    }
     Block gl_block(screen);
     Sprite sprite(screen);
 

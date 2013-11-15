@@ -8,12 +8,12 @@ class Sprite {
     public:
         Sprite(SDL_Surface * screen);
         ~Sprite();
-        
+
         //获取精灵x轴坐标
         int get_x_position();
         //获取精灵x轴坐标
         int get_y_position();
-        
+
         void set_x_position(int offset);
         //精灵移动
         void move_up(int delta);
@@ -21,7 +21,6 @@ class Sprite {
         void move_left(int delta);
         void move_right(int delta);
         void draw_sprite();
-        
 
     private:
         //精灵移动矩形

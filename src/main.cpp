@@ -73,7 +73,6 @@ int main( int argc, char* args[] )
             }
         }
 
-        /* handle sprite movement */
         keystate = SDL_GetKeyState(NULL);
 
         if (keystate[SDLK_LEFT] ) {
@@ -93,8 +92,6 @@ int main( int argc, char* args[] )
             sprite.move_down(SP_MOVE_RATE);
         }
 
-        //TODO: ugly code!
-        //重绘背景和阶梯，向左移动时会有残影
         //Update the screen
         move_bg(ScreenOffsetX, ScreenOffsetY, background, screen);
         sprite.draw_sprite();

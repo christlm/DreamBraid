@@ -24,7 +24,6 @@ void Block::onMapLoad() {
         block[index] = load_image(RES_BLOCK_PATH.c_str());
         index ++;
     }
-
 }
 
 void Block::onMapDraw() {

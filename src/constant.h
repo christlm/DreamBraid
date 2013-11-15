@@ -6,7 +6,7 @@
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 const int SCREEN_BPP = 32;
-const int BLOCK_NUM = 4;
+const int BLOCK_NUM = 10;
 
 //The attributes of the resource
 const std::string RES_MAP_PATH = "../res/map.txt";

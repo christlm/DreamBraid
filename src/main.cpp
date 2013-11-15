@@ -1,10 +1,6 @@
 #include "Block.h"
 #include "Sprite.h"
 
-//The image offsets. BAD implement
-int ImageOffsetX = 0;
-int ImageOffsetY = 0;
-
 int ScreenOffsetX = 0;
 int ScreenOffsetY = 0;
 //The surfaces that will be used
@@ -49,7 +45,7 @@ int main( int argc, char* args[] )
     {
         cout << "load background image failed." << endl;
     }
-    Block gl_block(screen);
+    Block gl_block(background);
     Sprite sprite(screen);
 
     //Update the screen
@@ -101,7 +97,6 @@ int main( int argc, char* args[] )
         //重绘背景和阶梯，向左移动时会有残影
         //Update the screen
         move_bg(ScreenOffsetX, ScreenOffsetY, background, screen);
-        //gl_block.onDraw(ImageOffsetX,ImageOffsetY);
         sprite.draw_sprite();
         if( SDL_Flip( screen ) == -1 )
         {

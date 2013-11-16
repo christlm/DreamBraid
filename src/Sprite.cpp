@@ -19,7 +19,6 @@ int Sprite::get_x_position() {
     return m_rcSprite.x;
 }
 
-
 int Sprite::get_y_position() {
     return m_rcSprite.y;
 }
@@ -57,10 +56,10 @@ void Sprite::move_left(int delta) {
 }
 
 void Sprite::move_right(int delta) {
-    if (m_rcSprite.x + delta < BG_LENGTH)
+    if (m_rcSprite.x + delta < SCREEN_WIDTH)
         m_rcSprite.x += delta;
-    //else
-
+    else
+        m_rcSprite.x = SCREEN_WIDTH ;
     draw_sprite();
 }
 

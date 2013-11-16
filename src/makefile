@@ -13,8 +13,7 @@ OBJECTS = Block.o Sprite.o mSDL.o
 all: $(EXE)
 
 $(EXE): main.cpp $(OBJECTS)
-	#$(CXX) $< $(LDFLAGS) -o $@ $(OBJECTS)
-	$(CXX) $<  $(OBJECTS) $(LDFLAGS) -o $@ 
+	$(CXX) $< $(OBJECTS) $(LDFLAGS) -o $@
 
 Block.o: Block.cpp Block.h
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $< -o $@

@@ -9,7 +9,7 @@ CXXFLAGS = -Wall -c $(SDL_INCLUDE)
 LDFLAGS = $(SDL_LIB)
 EXE = main
 
-OBJECTS = Block.o Sprite.o mSDL.o 
+OBJECTS = Block.o Sprite.o mSDL.o Timer.o
 all: $(EXE)
 
 $(EXE): main.cpp $(OBJECTS)
@@ -19,6 +19,9 @@ Block.o: Block.cpp Block.h
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $< -o $@
 
 Sprite.o: Sprite.cpp Sprite.h
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $< -o $@
+
+Timer.o: Timer.cpp Timer.h
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $< -o $@
 
 mSDL.o: mSDL.cpp mSDL.h

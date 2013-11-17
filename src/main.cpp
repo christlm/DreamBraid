@@ -1,5 +1,6 @@
 #include "Block.h"
 #include "Sprite.h"
+#include "Timer.h"
 
 //The surfaces that will be used
 SDL_Surface *background = NULL;
@@ -37,6 +38,7 @@ int main( int argc, char* args[] ) {
     if (!background) {
         cout << "load background image failed." << endl;
     }
+    Timer fps;
 
     Block gl_block(background);
     Sprite sprite(screen);
@@ -47,6 +49,7 @@ int main( int argc, char* args[] ) {
     }
 
     while (!quit) {
+        fps.start();
         if (SDL_PollEvent(&event)) {
             switch (event.type) {
                 case SDL_QUIT:
@@ -65,6 +68,11 @@ int main( int argc, char* args[] ) {
         }
         sprite.handle_events(background);
     }
+    //Cap the frame rate
+    if( fps.get_ticks() < 1000 / FRAMES_PER_SECOND ) {
+        SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - fps.get_ticks() );
+    }
+
     clean_up();
     return 0;
 }

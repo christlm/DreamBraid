@@ -1,15 +1,31 @@
 #include "Sprite.h"
 
+void Sprite::init() {
+    for (int i = 0 ; i < 4 ;i++) {
+        m_clipsRight[i].x = i * SP_WIDTH;
+        m_clipsRight[i].y = 0;
+        m_clipsRight[i].w = SP_WIDTH;
+        m_clipsRight[i].h = SP_HEIGHT;
+    }
+    for (int i = 0 ; i < 4 ;i++) {
+        m_clipsLeft[i].x = SP_WIDTH * i;
+        m_clipsLeft[i].y = SP_HEIGHT;
+        m_clipsLeft[i].w = SP_WIDTH;
+        m_clipsLeft[i].h = SP_HEIGHT;
+    }
+}
+
 Sprite::Sprite(SDL_Surface * screen) {
     m_screen = screen;
     m_sfSprite = load_image(RES_SPRITE_PATH.c_str());
-    if (!m_sfSprite) {
-        std::cout << "can not load sprite img" << std::endl;
-    }
     m_rcSprite.x = SPRITE_START_X;
     m_rcSprite.y = SPRITE_START_Y;
     m_ScreenOffsetX = 0;
     m_ScreenOffsetY = 0;
+    m_frame = 0;
+    m_bRight = true;
+    m_bLstRight = true;
+    init();
     draw_sprite();
 }
 
@@ -30,7 +46,19 @@ void Sprite::set_x_position(int offset) {
 }
 
 void Sprite::draw_sprite() {
-    SDL_BlitSurface(m_sfSprite, NULL, m_screen, &m_rcSprite);
+    if (m_bRight) {
+        if ( m_bLstRight == false)
+            m_frame = 0;
+        SDL_BlitSurface(m_sfSprite, &m_clipsRight[m_frame], m_screen, &m_rcSprite);
+    } else {
+        if ( m_bLstRight == true)
+            m_frame = 0;
+        SDL_BlitSurface(m_sfSprite, &m_clipsLeft[m_frame], m_screen, &m_rcSprite);
+    }
+    m_frame ++;
+    //每4个循环一次
+    if (m_frame >= 4)
+        m_frame = 0;
 }
 
 void Sprite::move_up(int delta) {
@@ -70,6 +98,8 @@ void Sprite::handle_events(SDL_Surface *background) {
     keystate = SDL_GetKeyState(NULL);
 
     if (keystate[SDLK_LEFT] ) {
+        m_bLstRight = m_bRight;
+        m_bRight = false;
         move_left(SP_MOVE_RATE);
     }
     if (keystate[SDLK_RIGHT] ) {
@@ -78,6 +108,8 @@ void Sprite::handle_events(SDL_Surface *background) {
             set_x_position(-SCREEN_WIDTH / 2);
         }
         move_right(SP_MOVE_RATE);
+        m_bLstRight = m_bRight;
+        m_bRight = true;
     }
     if (keystate[SDLK_UP] ) {
         move_up(SP_MOVE_RATE);

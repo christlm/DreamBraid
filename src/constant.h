@@ -12,7 +12,7 @@ const int BLOCK_NUM = 10;
 const std::string RES_MAP_PATH = "../res/map.txt";
 const std::string RES_BLOCK_PATH = "../res/block.png";
 const std::string RES_BACKGROUND_PATH = "../res/background.png";
-const std::string RES_SPRITE_PATH = "../res/block.png";
+const std::string RES_SPRITE_PATH = "../res/lep.png";
 
 //精灵开始起点
 const int SPRITE_START_X = 0;
@@ -23,4 +23,10 @@ const int BG_MOVE_RATE = 10;
 const int BG_LENGTH = 3786;
 //精灵移动速度
 const int SP_MOVE_RATE = 1;
+
+const int SP_WIDTH = 49;
+const int SP_HEIGHT = 46;
+
+//Frame Per Second
+const int FRAMES_PER_SECOND = 10;
 #endif

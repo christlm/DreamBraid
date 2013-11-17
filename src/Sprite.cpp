@@ -119,7 +119,13 @@ void Sprite::handle_events(SDL_Surface *background) {
     }
 
     //Update the screen
-    move_bg(m_ScreenOffsetX, m_ScreenOffsetY, background, m_screen);
+    SDL_Rect rectBg;
+    rectBg.x = m_ScreenOffsetX;
+    rectBg.y = m_ScreenOffsetY;
+    rectBg.w = RES_BACKGROUND_WIDTH;
+    rectBg.h = RES_BACKGROUND_HEIGHT;
+
+    move_bg(&rectBg, background, m_screen);
     draw_sprite();
     SDL_Flip(m_screen);
 }

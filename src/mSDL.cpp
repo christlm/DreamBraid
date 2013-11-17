@@ -1,4 +1,6 @@
 #include "mSDL.h"
+#include <iostream>
+using namespace std;
 
 SDL_Surface *load_image(std::string filename)
 {
@@ -37,13 +39,8 @@ void apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination)
     SDL_BlitSurface( source, NULL, destination, &offset );
 }
 
-void move_bg( int x, int y, SDL_Surface* source, SDL_Surface* destination)
+void move_bg( SDL_Rect* rect, SDL_Surface* source, SDL_Surface* destination)
 {
-    SDL_Rect offset;
-
-    offset.x = x;
-    offset.y = y;
-
     //Blit the surface
-    SDL_BlitSurface( source, &offset, destination, NULL);
+    SDL_BlitSurface( source, rect, destination, NULL);
 }

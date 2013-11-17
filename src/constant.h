@@ -14,6 +14,10 @@ const std::string RES_BLOCK_PATH = "../res/block.png";
 const std::string RES_BACKGROUND_PATH = "../res/background.png";
 const std::string RES_SPRITE_PATH = "../res/sprite.png";
 
+// Better write this value into map file
+const int RES_BACKGROUND_WIDTH = 3786;
+const int RES_BACKGROUND_HEIGHT = 620;
+
 //精灵开始起点
 const int SPRITE_START_X = 0;
 const int SPRITE_START_Y = 400;

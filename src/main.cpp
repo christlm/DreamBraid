@@ -1,8 +1,6 @@
 #include "Block.h"
 #include "Sprite.h"
 
-int ScreenOffsetX = 0;
-int ScreenOffsetY = 0;
 //The surfaces that will be used
 SDL_Surface *background = NULL;
 SDL_Surface *screen = NULL;
@@ -10,20 +8,16 @@ SDL_Surface *screen = NULL;
 //The event structure
 SDL_Event event;
 
-void clean_up()
-{
+void clean_up() {
     //Free the surfaces
     SDL_FreeSurface( background );
     SDL_Quit();
 }
 
-int main( int argc, char* args[] )
-{
+int main( int argc, char* args[] ) {
     bool quit = false;
-    Uint8 *keystate;
     //Initialize all SDL subsystems
-    if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 )
-    {
+    if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 ) {
         return 1;
     }
 

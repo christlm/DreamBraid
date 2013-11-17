@@ -21,7 +21,7 @@ class Sprite {
         void move_left(int delta);
         void move_right(int delta);
         void draw_sprite();
-        int handle_events(SDL_Surface * background);
+        void handle_events(SDL_Surface * background);
 
     private:
         //精灵移动矩形

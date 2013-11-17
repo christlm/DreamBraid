@@ -65,7 +65,7 @@ void Sprite::move_right(int delta) {
     draw_sprite();
 }
 
-int Sprite::handle_events(SDL_Surface *background) {
+void Sprite::handle_events(SDL_Surface *background) {
     Uint8 *keystate;
     keystate = SDL_GetKeyState(NULL);
 
@@ -89,7 +89,5 @@ int Sprite::handle_events(SDL_Surface *background) {
     //Update the screen
     move_bg(m_ScreenOffsetX, m_ScreenOffsetY, background, m_screen);
     draw_sprite();
-    if( SDL_Flip( m_screen ) == -1 ) {
-        return 1;
-    }
+    SDL_Flip(m_screen);
 }

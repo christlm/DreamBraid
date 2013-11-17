@@ -31,8 +31,7 @@ int main( int argc, char* args[] )
     screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
 
     //If there was an error in setting up the screen
-    if( screen == NULL )
-    {
+    if( screen == NULL ) {
         return 1;
     }
 
@@ -41,21 +40,19 @@ int main( int argc, char* args[] )
 
     //Load the images
     background = load_image(RES_BACKGROUND_PATH.c_str());
-    if (!background)
-    {
+    if (!background) {
         cout << "load background image failed." << endl;
     }
+
     Block gl_block(background);
     Sprite sprite(screen);
 
     //Update the screen
-    if( SDL_Flip( screen ) == -1 )
-    {
+    if( SDL_Flip( screen ) == -1 ) {
         return 1;
     }
 
-    while (!quit)
-    {
+    while (!quit) {
         if (SDL_PollEvent(&event)) {
             switch (event.type) {
                 case SDL_QUIT:
@@ -72,33 +69,7 @@ int main( int argc, char* args[] )
                     break;
             }
         }
-
-        keystate = SDL_GetKeyState(NULL);
-
-        if (keystate[SDLK_LEFT] ) {
-            sprite.move_left(SP_MOVE_RATE);
-        }
-        if (keystate[SDLK_RIGHT] ) {
-            if (SCREEN_WIDTH - sprite.get_x_position() < SCREEN_WIDTH / 4) {
-                ScreenOffsetX += SCREEN_WIDTH / 4 ;
-                sprite.set_x_position(-SCREEN_WIDTH / 2);
-            }
-            sprite.move_right(SP_MOVE_RATE);
-        }
-        if (keystate[SDLK_UP] ) {
-            sprite.move_up(SP_MOVE_RATE);
-        }
-        if (keystate[SDLK_DOWN] ) {
-            sprite.move_down(SP_MOVE_RATE);
-        }
-
-        //Update the screen
-        move_bg(ScreenOffsetX, ScreenOffsetY, background, screen);
-        sprite.draw_sprite();
-        if( SDL_Flip( screen ) == -1 )
-        {
-            return 1;
-        }
+        sprite.handle_events(background);
     }
     clean_up();
     return 0;

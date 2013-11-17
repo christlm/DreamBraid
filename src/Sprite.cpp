@@ -8,6 +8,8 @@ Sprite::Sprite(SDL_Surface * screen) {
     }
     m_rcSprite.x = SPRITE_START_X;
     m_rcSprite.y = SPRITE_START_Y;
+    m_ScreenOffsetX = 0;
+    m_ScreenOffsetY = 0;
     draw_sprite();
 }
 
@@ -63,3 +65,31 @@ void Sprite::move_right(int delta) {
     draw_sprite();
 }
 
+int Sprite::handle_events(SDL_Surface *background) {
+    Uint8 *keystate;
+    keystate = SDL_GetKeyState(NULL);
+
+    if (keystate[SDLK_LEFT] ) {
+        move_left(SP_MOVE_RATE);
+    }
+    if (keystate[SDLK_RIGHT] ) {
+        if (SCREEN_WIDTH - get_x_position() < SCREEN_WIDTH / 4) {
+            m_ScreenOffsetX += SCREEN_WIDTH / 4 ;
+            set_x_position(-SCREEN_WIDTH / 2);
+        }
+        move_right(SP_MOVE_RATE);
+    }
+    if (keystate[SDLK_UP] ) {
+        move_up(SP_MOVE_RATE);
+    }
+    if (keystate[SDLK_DOWN] ) {
+        move_down(SP_MOVE_RATE);
+    }
+
+    //Update the screen
+    move_bg(m_ScreenOffsetX, m_ScreenOffsetY, background, m_screen);
+    draw_sprite();
+    if( SDL_Flip( m_screen ) == -1 ) {
+        return 1;
+    }
+}

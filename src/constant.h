@@ -12,7 +12,7 @@ const int BLOCK_NUM = 10;
 const std::string RES_MAP_PATH = "../res/map.txt";
 const std::string RES_BLOCK_PATH = "../res/block.png";
 const std::string RES_BACKGROUND_PATH = "../res/background.png";
-const std::string RES_SPRITE_PATH = "../res/lep.png";
+const std::string RES_SPRITE_PATH = "../res/sprite.png";
 
 //精灵开始起点
 const int SPRITE_START_X = 0;

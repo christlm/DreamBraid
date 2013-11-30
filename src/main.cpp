@@ -1,78 +1,62 @@
-#include "Block.h"
-#include "Sprite.h"
-#include "Timer.h"
+#include <iostream>
+#include <SDL.h>
 
-//The surfaces that will be used
-SDL_Surface *background = NULL;
-SDL_Surface *screen = NULL;
+int main(int argc, char **argv) {
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
+		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
+		return 1;
+	}
+	
+	SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
+	if (win == nullptr){
+		std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
+		return 1;
+	}
 
-//The event structure
-SDL_Event event;
+	SDL_RendererInfo render_info;
+	int driver_num = SDL_GetNumRenderDrivers();
+	for (int i = 0; i < driver_num; ++i) {
+		SDL_GetRenderDriverInfo(i, &render_info);
+		std::cout << "=== Render Info ===" << std::endl;
+		std::cout << "Name: " << render_info.name << std::endl;
+		std::cout << "Flags: " << render_info.flags << std::endl;
+		std::cout << "Texture formats: " << render_info.num_texture_formats << std::endl;
+		std::cout << "Max texture width: " << render_info.max_texture_width << std::endl;
+		std::cout << "Max texture height: " << render_info.max_texture_height << std::endl;
+		std::cout << std::endl;
+	}
 
-void clean_up() {
-    //Free the surfaces
-    SDL_FreeSurface( background );
-    SDL_Quit();
-}
+	SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if (ren == nullptr){
+		std::cout << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
+		return 1;
+	}
 
-int main( int argc, char* args[] ) {
-    bool quit = false;
-    //Initialize all SDL subsystems
-    if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 ) {
-        return 1;
-    }
+	SDL_Surface *bmp = SDL_LoadBMP("./res/hello.bmp");
+	if (bmp == nullptr){
+		std::cout << "SDL_LoadBMP Error: " << SDL_GetError() << std::endl;
+		return 1;
+	}
 
-    //Set up the screen
-    screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
+	SDL_Texture *tex = SDL_CreateTextureFromSurface(ren, bmp);
+	SDL_FreeSurface(bmp);
+	if (tex == nullptr){
+		std::cout << "SDL_CreateTextureFromSurface Error: " << SDL_GetError() << std::endl;
+		return 1;
+	}
 
-    //If there was an error in setting up the screen
-    if( screen == NULL ) {
-        return 1;
-    }
+	SDL_RenderClear(ren);
+	SDL_RenderCopy(ren, tex, NULL, NULL);
+	SDL_RenderPresent(ren);
 
-    //Set the window caption
-    SDL_WM_SetCaption( "Braid's Road", NULL );
+	SDL_Delay(2000);
 
-    //Load the images
-    background = load_image(RES_BACKGROUND_PATH.c_str());
-    if (!background) {
-        cout << "load background image failed." << endl;
-    }
-    Timer fps;
+	SDL_DestroyTexture(tex);
+	SDL_DestroyRenderer(ren);
+	SDL_DestroyWindow(win);
+	SDL_Quit();
 
-    Block gl_block(background);
-    Sprite sprite(screen);
+	SDL_Quit();
 
-    //Update the screen
-    if( SDL_Flip( screen ) == -1 ) {
-        return 1;
-    }
-
-    while (!quit) {
-        fps.start();
-        if (SDL_PollEvent(&event)) {
-            switch (event.type) {
-                case SDL_QUIT:
-                    quit = true;
-                    break;
-
-                case SDL_KEYDOWN:
-                    switch (event.key.keysym.sym) {
-                        case SDLK_ESCAPE:
-                        case SDLK_q:
-                            quit = true;
-                            break;
-                    }
-                    break;
-            }
-        }
-        sprite.handle_events(background);
-    }
-    //Cap the frame rate
-    if( fps.get_ticks() < 1000 / FRAMES_PER_SECOND ) {
-        SDL_Delay( ( 1000 / FRAMES_PER_SECOND ) - fps.get_ticks() );
-    }
-
-    clean_up();
-    return 0;
+	return 0;
 }

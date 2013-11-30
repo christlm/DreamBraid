@@ -20,6 +20,9 @@
 *.out
 *.app
 
+# Debug
+debug/
+
 # Others
 *.swp
 tags

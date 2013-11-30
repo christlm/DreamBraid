@@ -12,9 +12,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\utils\print_info.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\hello.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\utils\print_info.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D5991CED-803A-4309-8109-B971953A0539}</ProjectGuid>
@@ -50,7 +54,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\Library\C++\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\include;D:\Library\C++\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

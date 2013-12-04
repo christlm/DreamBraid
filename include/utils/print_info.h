@@ -1,7 +1,7 @@
 #include <ostream>
 
-namespace DreadBraid {
+namespace DreamBraid {
 	namespace Utils {
 		int PrintRenderDriversInfo(std::ostream& out);
-	};
-};
+	}
+}

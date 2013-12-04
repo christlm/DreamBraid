@@ -4,21 +4,24 @@
 
 #include "utils/print_info.h"
 
+using namespace DreamBraid;
+
 int main(int argc, char **argv) {
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0){
+	if (::SDL_Init(SDL_INIT_EVERYTHING) != 0){
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 		return 1;
 	}
 	
-	SDL_Window *win = SDL_CreateWindow("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
+	SDL_Window *win = ::SDL_CreateWindow("Hello World!", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
 	if (win == nullptr){
 		std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
 		return 1;
 	}
 
-	DreadBraid::Utils::PrintRenderDriversInfo(std::cout);
+	Utils::PrintRenderDriversInfo(std::cout);
 
-	SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	// In my machine, it create a direct3d renderer
+	SDL_Renderer *ren = ::SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (ren == nullptr){
 		std::cout << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
 		return 1;
@@ -46,8 +49,6 @@ int main(int argc, char **argv) {
 	SDL_DestroyTexture(tex);
 	SDL_DestroyRenderer(ren);
 	SDL_DestroyWindow(win);
-	SDL_Quit();
-
 	SDL_Quit();
 
 	return 0;

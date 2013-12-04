@@ -2,7 +2,7 @@
 
 #include "SDL.h"
 
-int DreadBraid::Utils::PrintRenderDriversInfo(std::ostream& out) {
+int DreamBraid::Utils::PrintRenderDriversInfo(std::ostream& out) {
 	SDL_RendererInfo render_info;
 	uint32_t driver_num = SDL_GetNumRenderDrivers();
 	for (uint32_t i = 0; i < driver_num; ++i) {

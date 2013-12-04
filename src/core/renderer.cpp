@@ -13,6 +13,11 @@ int Renderer::Init() {
 
 	m_renderer = SDL_CreateRenderer(m_window, -1, Config::RENDERER_FLAGS);
 	if (m_renderer == nullptr) {
-		return 1;
+		return -2;
 	}
+}
+
+void Renderer::Destroy() {
+	SDL_DestroyRenderer(m_renderer);
+	SDL_DestroyWindow(m_window);
 }

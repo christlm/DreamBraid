@@ -8,7 +8,7 @@ namespace DreamBraid {
 			~Renderer(){}
 
 			int Init();
-			int Destroy();
+			void Destroy();
 
 		private:
 			SDL_Window*   m_window;

@@ -16,6 +16,12 @@
     <Filter Include="include\utils">
       <UniqueIdentifier>{cbb90e2f-c3dc-43e3-8e8b-90b6200e2cd9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\core">
+      <UniqueIdentifier>{53208e70-35c4-499a-ba46-b0f1c9a63585}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core">
+      <UniqueIdentifier>{5d584bd7-7670-4b57-b06d-3670bb6f2a5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -23,6 +29,12 @@
     </ClCompile>
     <ClCompile Include="src\utils\print_info.cpp">
       <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\game.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\renderer.cpp">
+      <Filter>src\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -33,6 +45,15 @@
   <ItemGroup>
     <ClInclude Include="include\utils\print_info.h">
       <Filter>include\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\game.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\renderer.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\config.h">
+      <Filter>include\core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

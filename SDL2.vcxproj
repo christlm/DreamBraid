@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\game.cpp" />
+    <ClCompile Include="src\core\renderer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\utils\print_info.cpp" />
   </ItemGroup>
@@ -18,6 +20,9 @@
     <Image Include="res\hello.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\core\config.h" />
+    <ClInclude Include="include\core\game.h" />
+    <ClInclude Include="include\core\renderer.h" />
     <ClInclude Include="include\utils\print_info.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

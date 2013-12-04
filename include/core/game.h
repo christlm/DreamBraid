@@ -8,7 +8,6 @@ namespace DreamBraid {
 				static Game instance;
 				return instance;
 			}
-			void Destoy();
 
 		private:
 			Game(){}
@@ -16,7 +15,8 @@ namespace DreamBraid {
 			void operator=(Game const&);
 
 		public:
-			int InitRenderer();
+			int Init();
+			int Destoy();
 
 		private:
 			Renderer* m_renderer;

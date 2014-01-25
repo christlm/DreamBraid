@@ -5,7 +5,7 @@ CXX = g++
 SDL_LIB = -L/usr/local/lib -lSDL -lSDL_image -Wl,-rpath=/usr/local/lib
 SDL_INCLUDE = -I/usr/local/include
 # You may need to change -std=c++11 to -std=c++0x if your compiler is a bit older
-CXXFLAGS = -Wall -c $(SDL_INCLUDE)
+CXXFLAGS = -Wall -O2 -c $(SDL_INCLUDE)
 LDFLAGS = $(SDL_LIB)
 EXE = main
 
@@ -28,5 +28,5 @@ mSDL.o: mSDL.cpp mSDL.h
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $< -o $@
 
 clean:
-	rm *.o && rm $(EXE)
+	rm -f *.o && rm -f $(EXE)
 
